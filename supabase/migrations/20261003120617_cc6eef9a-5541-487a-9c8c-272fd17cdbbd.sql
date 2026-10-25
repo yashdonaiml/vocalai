@@ -1,0 +1,1 @@
+revoke execute on function public.is_staff(uuid) from public, anon;

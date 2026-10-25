@@ -1,0 +1,352 @@
+surface,method,path_or_template,evidence,execution_status
+documented public API,GET,/v1/balance,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/calls,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/calls,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/calls/{call_id},https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/calls/{call_id}/cancel,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/campaigns,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/campaigns,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/campaigns/{campaign_id},https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/campaigns/{campaign_id}/cancel,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/campaigns/{campaign_id}/contacts,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/campaigns/{campaign_id}/contacts,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/campaigns/{campaign_id}/launch,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/campaigns/{campaign_id}/pause,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/campaigns/{campaign_id}/resume,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/dnc,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/dnc,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,DELETE,/v1/dnc/{phone},https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/employees,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/employees/{employee_id},https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/events,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/events/{event_id},https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/inbound-calls,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/inbound-calls/{inbound_call_id},https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/leads,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/leads/{lead_id},https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/me,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/phone-numbers,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/phone-numbers/{number_id},https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/webhook-endpoints,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/webhook-endpoints,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,DELETE,/v1/webhook-endpoints/{endpoint_id},https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/webhook-endpoints/{endpoint_id},https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,PATCH,/v1/webhook-endpoints/{endpoint_id},https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,GET,/v1/webhook-endpoints/{endpoint_id}/deliveries,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/webhook-endpoints/{endpoint_id}/deliveries/{delivery_id}/resend,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/webhook-endpoints/{endpoint_id}/rotate-secret,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+documented public API,POST,/v1/webhook-endpoints/{endpoint_id}/test,https://docs.outpero.com/developers/openapi.json,documented only; /v1/me separately checked without credentials
+frontend integration contract,DELETE,/numbers/${a.id},https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/config,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/numbers/vobiz/holders,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/numbers/vobiz/inventory?${N},https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/numbers/vobiz/quote?e164=${encodeURIComponent(r.e164)},https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/numbers/voicelink/holders,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/numbers/voicelink/inventory?${S},https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/numbers/voicelink/kyc/documents,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/numbers/voicelink/kyc/locations,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/numbers/voicelink/kyc/locations/${Q},https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/numbers/voicelink/kyc/status,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/wallet,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/numbers/${a.id},https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/numbers/vobiz/kyc/digilocker/initiate,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/numbers/vobiz/kyc/digilocker/verify,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/numbers/vobiz/kyc/verify-pan,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/numbers/vobiz/purchase,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/numbers/voicelink/kyc/aadhaar-callback,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/numbers/voicelink/kyc/aadhaar-init,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/numbers/voicelink/kyc/final-submit,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/numbers/voicelink/kyc/gst,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/numbers/voicelink/kyc/pan,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/numbers/voicelink/kyc/step1,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/numbers/voicelink/purchase,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/wallet/dev-credit,https://docs.outpero.com/assets/Numbers-Cvu2HTqG.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,DELETE,/accounts/me/caller-memory/${encodeURIComponent(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,DELETE,/admin/config/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,DELETE,/admin/finance/accounts/${e}/pricing/${t},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,DELETE,/admin/prompts/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,DELETE,/admin/voices/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,DELETE,/contact-lists/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,DELETE,/employees/${encodeURIComponent(e)}/knowledge/${t},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,DELETE,/employees/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,DELETE,/leads/notes/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/accounts/me,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/accounts/me/caller-memory,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/accounts/${e}${a?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/accounts/${e}/consents,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/accounts/${e}/credits,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/accounts/${e}/view-as,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/accounts?${t.toString()},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/agents/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/agents/${e}/apis,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/agents/${e}/compiled,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/agents?${t.toString()},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/alerts/catalog,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/analytics${s?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/audit?limit=${e}&offset=${t},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/billing${s?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/call-health?hours=${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/calls/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/calls/${e}/timeline,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/calls/live,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/calls?${t.toString()},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/carrier-capacity,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/config,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/credits,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/deleted-identities,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/engines,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/feedback?${t.toString()},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,"/admin/finance${qe(t,e)}",https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,"/admin/finance/accounts/${e}${qe(s,t)}",https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/finance/accounts/${e}/ledger${Rt(t)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/finance/accounts/${e}/margin${t?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/finance/accounts/${e}/pricing,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,"/admin/finance/deferred${qe(t,e)}",https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/finance/ledger${Rt(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,"/admin/finance/reconciliation${qe(t,e)}",https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/finance/taxonomy,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/fx-rate,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/global-apis,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/health,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/holders,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/notifications${e?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/numbers,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/numbers/detail${e?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/numbers/voicelink,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/overview${e?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/premium-voice,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/prompts,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/prompts/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/provider-balances,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/provider-costs,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/provider-health,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/pulse,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/revenue,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/sales/assignees,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/sales/autopush?vendor_id=${encodeURIComponent(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/sales/demos${e?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/sales/holders,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/sales/industries,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/sales/recording/${encodeURIComponent(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/sales/staff,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/sales/vendors,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/sales?${t.toString()},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/scale,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/secrets,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/setup-requests${e?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/system-health,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/voices,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/admin/voices/library/status,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/announcements/active,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/billing,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/billing/payments?limit=${e}&offset=${t}${s?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/billing/setup-call,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/billing/statement?${t},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/billing/transactions?limit=${t}&offset=${s}&employee_id=${encodeURIComponent(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/billing/usage?days=${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/billing/usage?days=${t}&employee_id=${encodeURIComponent(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/calls,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/calls${i?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/calls/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/calls/by-agent/${encodeURIComponent(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/calls/live,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/calls/summary${o?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/calls/summary?direction=inbound,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/calls/summary?direction=inbound&date_from=${Os()},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/calls/summary?employee_id=${encodeURIComponent(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/calls?employee_id=${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/campaigns,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/campaigns/${e}/analytics,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/campaigns/${e}/contacts?${s.toString()},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/campaigns/${e}/live,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/capacity/activity,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/config,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/contact-lists,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/contact-lists/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/developer/keys,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/developer/status,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/developer/webhooks,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${encodeURIComponent(e)}/knowledge,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${encodeURIComponent(e)}/knowledge/budget,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${e}/dialer-settings,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${e}/lead-webhook,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${e}/lead-webhook/reveal-secret,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${e}/pre-variables,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${e}/scheduled-calls${s},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${e}/script-bundle,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${e}/stats,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${e}/versions,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees/${e}/webhook-events?limit=${t},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/employees?include_archived=true,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/handoff/drafts/${encodeURIComponent(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/inbound/missed,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/leads,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/leads/breakdown?${s.toString()},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/leads/fields${t},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/leads/notes,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/leads/summary${i?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/leads?${s.toString()},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/leads?employee_id=${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/notifications,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/numbers,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/public/signup-status,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/scheduled-calls?${s.toString()},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/setup-help/quote,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/stats/analytics${Ct(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/stats/analytics${s?,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/stats/bulk${Ct(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/stats/call-health?hours=${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/stats/dashboard,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/stats/instant${Ct(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/stats/performance,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/support/rating?category=${encodeURIComponent(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,GET,/voices,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/accounts/me,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/accounts/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/agents/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/agents/${e}/config,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/alerts/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/apis/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/global-apis/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/numbers/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/provider-costs/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/sales/accounts/${e}/industry,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/sales/staff/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/sales/vendors/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/sections/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/setup-requests/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/admin/voices/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/billing/settings,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/campaigns/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/employees/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/employees/${e}/lead-webhook,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PATCH,/leads/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/accounts/me/accept-terms,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/accounts/me/caller-memory/reset,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/accounts/set-password,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/accounts/${e}/credits/adjust,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/accounts/${e}/delete,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/accounts/${e}/impersonate,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/accounts/${e}/reactivate,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/accounts/${e}/relink-login,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/accounts/${e}/shared-line-calling,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/accounts/${e}/suspend,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/agents/${e}/apis,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/agents/${e}/delete,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/agents/${e}/hire-comp,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/agents/${e}/hire-expire,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/agents/${e}/pause,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/agents/${e}/resume,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/alerts/digest/send-now?day_offset=${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/alerts/test,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/apis/${e}/delete,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/calls/${e}/redial,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/carrier-capacity/donors/${encodeURIComponent(e)}/approval,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/carrier-capacity/leases/${encodeURIComponent(e)}/release,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/carrier-capacity/plans,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/carrier-capacity/plans/${encodeURIComponent(e)}/activate,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/carrier-capacity/plans/${encodeURIComponent(e)}/cancel,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/carrier-capacity/reconcile,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/deleted-identities/${e}/restore,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/employees/${e}/channels,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/employees/${e}/duplicate,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/engines/${encodeURIComponent(e)}/drain?draining=${t},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/finance/accounts/${e}/pricing,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/global-apis,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/global-apis/${e}/delete,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/holders/${e}/kyc-verify,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/holders/${e}/sync,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/leads/${e}/outcome,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/notifications/${e}/dismiss,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/notifications/${e}/read,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/notifications/read-all,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/notifications/send,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/numbers/${e}/channels,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/numbers/${e}/record-cost,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/numbers/${e}/release,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/numbers/${e}/renew,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/premium-voice/anchor,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/premium-voice/check,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/prompts/${e}/restore/${t},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/provider-balances/${encodeURIComponent(e)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/provider-costs,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/provider-costs/${e}/delete,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/provider-health/probe?component=${encodeURIComponent(e)}&provider=${encodeURIComponent(t)},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/sales/autopush,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/sales/autopush/run,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/sales/leads,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/sales/push,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/sales/recall,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/sales/staff,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/sales/vendors,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/secrets/${e}/delete,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/voices,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/voices/library/import?apply=${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/admin/voices/library/run?score=${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/ai/brief-questions,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/ai/draft-agent,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/ai/edit-flow,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/ai/structure-prompt,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/announcements/${encodeURIComponent(e)}/close,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/billing/setup-call,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/calls/${e}/redial,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/cancel,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/cancel-callbacks,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/contacts,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/contacts/${t}/call-now,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/contacts/${t}/cancel,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/contacts/${t}/retry,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/contacts/bulk-action,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/launch,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/pause,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/restore-not-called,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/resume,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/retry-exhausted,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/campaigns/${e}/save-as-list,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/contact-lists,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${encodeURIComponent(e)}/knowledge,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${encodeURIComponent(e)}/sandbox/call,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${encodeURIComponent(e)}/sandbox/chat,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${encodeURIComponent(e)}/teach,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/activate,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/call-number,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/deactivate,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/lead-webhook,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/lead-webhook/rotate-secret,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/lead-webhook/test,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/outbound-test-call,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/publish,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/reset,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/revert,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/script-bundle,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/setup-help,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/switch-mode,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/test-lead,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/versions/${t}/restore,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/${e}/web-test-call,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/employees/script-bundle/preview,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/leads/notes,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/notifications/${e}/read,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/notifications/read-all,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/scheduled-calls/${e}/call-now,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/scheduled-calls/${e}/cancel,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/scheduled-calls/${e}/retry,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/support/chat,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/support/feedback,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,POST,/support/rating,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PUT,/admin/accounts/${encodeURIComponent(e)}/premium-voice-engine,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PUT,/admin/config/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PUT,/admin/prompts/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PUT,/admin/provider-health/llm-primary,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PUT,/admin/secrets/${e},https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PUT,/employees/${e}/capture-variables,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PUT,/employees/${e}/dialer-settings,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PUT,/employees/${e}/number,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+frontend integration contract,PUT,/employees/${e}/pre-variables,https://docs.outpero.com/assets/index-Dk1b9U-L.js,not executed; may require authentication; interpolation may be partial
+read-only access check,GET,/public/signup-status,https://api.outpero.com/public/signup-status,200
+read-only access check,GET,/v1/me,https://api.outpero.com/v1/me,401
+read-only access check,GET,/config,https://api.outpero.com/config,401

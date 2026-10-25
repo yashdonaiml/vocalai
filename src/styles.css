@@ -1,0 +1,240 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-glass: var(--glass);
+  --color-realtime: var(--realtime);
+  --color-intelligence: var(--intelligence);
+  --color-info: var(--info);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-earth: var(--earth);
+  --color-sage: var(--sage);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-hover: var(--primary-hover);
+  --color-success-soft: var(--success-soft);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger-soft: var(--danger-soft);
+  --color-info-soft: var(--info-soft);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
+  --color-chart-8: var(--chart-8);
+  --shadow-card: var(--shadow-card);
+  --shadow-lift: var(--shadow-lift);
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-pixel: var(--font-sans);
+}
+
+/* Neutral-first enterprise palette: ~90% neutrals, forest green as a rare accent. Light default. */
+:root {
+  --radius: 0.875rem;
+  --background: #FAFAF8;
+  --foreground: #202521;
+  --card: #FFFFFF;
+  --card-foreground: #202521;
+  --popover: #FFFFFF;
+  --popover-foreground: #202521;
+  --primary: #245C4F;
+  --primary-hover: #1B493F;
+  --primary-foreground: #FFFFFF;
+  --primary-soft: #E4F0EA;
+  --secondary: #ECEDE9;
+  --secondary-foreground: #202521;
+  --muted: #F4F4F1;
+  --muted-foreground: #6B6F6A;
+  --subtle-foreground: #888A85;
+  --accent: #ECEDE9;
+  --accent-foreground: #202521;
+  --destructive: #CB7164;
+  --destructive-foreground: #FFFFFF;
+  --success: #278064;
+  --warning: #A8732F;
+  --info: #647C85;
+  --success-soft: #E3F1EA;
+  --warning-soft: #F7EBDA;
+  --danger-soft: #F8E5E1;
+  --info-soft: #E6ECEE;
+  --realtime: #278064;
+  --intelligence: #245C4F;
+  --earth: #647C85;
+  --sage: #A7D7C6;
+  --border: #E7E7E2;
+  --input: #E7E7E2;
+  --ring: #245C4F;
+  --chart-1: #245C4F;
+  --chart-2: #6CC4B6;
+  --chart-3: #A7D7C6;
+  --chart-4: #F8D7A4;
+  --chart-5: #F6B2A7;
+  --chart-6: #C58B43;
+  --chart-7: #647C85;
+  --chart-8: #3E7F6D;
+  --glass: #FFFFFF;
+  --shadow-card: 0 1px 2px rgb(32 37 33 / 4%), 0 8px 24px -12px rgb(32 37 33 / 10%);
+  --shadow-lift: 0 4px 16px -4px rgb(32 37 33 / 12%);
+  --sidebar: #F4F4F1;
+  --sidebar-foreground: #202521;
+  --sidebar-primary: #245C4F;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #E4F0EA;
+  --sidebar-accent-foreground: #202521;
+  --sidebar-border: #E7E7E2;
+  --sidebar-ring: #245C4F;
+}
+
+:root.dark {
+  --background: #191D1B;
+  --foreground: #F3F4F0;
+  --card: #222724;
+  --card-foreground: #F3F4F0;
+  --popover: #222724;
+  --popover-foreground: #F3F4F0;
+  --primary: #73B59D;
+  --primary-hover: #8BC4AF;
+  --primary-foreground: #151917;
+  --primary-soft: #273D34;
+  --secondary: #2B312D;
+  --secondary-foreground: #F3F4F0;
+  --muted: #2B312D;
+  --muted-foreground: #A9B0AA;
+  --subtle-foreground: #828B84;
+  --accent: #2B312D;
+  --accent-foreground: #F3F4F0;
+  --destructive: #D9897D;
+  --destructive-foreground: #151917;
+  --success: #6DBB9C;
+  --warning: #D9A866;
+  --info: #94A9B1;
+  --success-soft: #213A30;
+  --warning-soft: #3A3123;
+  --danger-soft: #3D2a27;
+  --info-soft: #28343A;
+  --realtime: #6DBB9C;
+  --intelligence: #73B59D;
+  --earth: #94A9B1;
+  --sage: #A7D7C6;
+  --border: #353C37;
+  --input: #353C37;
+  --ring: #73B59D;
+  --chart-1: #73B59D;
+  --chart-2: #6CC4B6;
+  --chart-3: #3E7F6D;
+  --chart-4: #D9A866;
+  --chart-5: #D9897D;
+  --chart-6: #C58B43;
+  --chart-7: #94A9B1;
+  --chart-8: #A7D7C6;
+  --glass: #222724;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 30%), 0 10px 28px -14px rgb(0 0 0 / 55%);
+  --shadow-lift: 0 6px 20px -6px rgb(0 0 0 / 50%);
+  --sidebar: #151917;
+  --sidebar-foreground: #F3F4F0;
+  --sidebar-primary: #73B59D;
+  --sidebar-primary-foreground: #151917;
+  --sidebar-accent: #273D34;
+  --sidebar-accent-foreground: #F3F4F0;
+  --sidebar-border: #353C37;
+  --sidebar-ring: #73B59D;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+  }
+  h1, h2 { letter-spacing: -0.035em; font-weight: 650; }
+  .font-mono, .tabular { font-variant-numeric: tabular-nums; }
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@utility animate-rise { animation: rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+body { -webkit-font-smoothing: antialiased; letter-spacing: -0.005em; }
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@utility animate-marquee { animation: marquee 32s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .animate-marquee { animation: none; } }
+
+/* System label: small uppercase Inter, only via SystemLabel/Readout. */
+@utility font-pixel {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Scroll reveal + tab progress + grain (marketing pages) */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
+.reveal-in { opacity: 1; transform: none; }
+@keyframes tab-progress { from { width: 0; } to { width: 100%; } }
+.tab-progress { animation: tab-progress linear forwards; }
+.grain { position: relative; }
+.grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .08; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .tab-progress { animation: none; width: 100%; } }

@@ -1,0 +1,1 @@
+alter table public.knowledge_bases add column if not exists rerank boolean not null default false;

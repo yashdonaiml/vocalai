@@ -1,0 +1,32 @@
+{
+  "sessionId": "7624328f-7305-4f90-9c51-32a81311f991",
+  "audioFrames": 7884,
+  "turns": [
+    {
+      "seq": 0,
+      "role": "assistant",
+      "content": "నమస్కారం! నేను మీకు ఎలా సహాయపడగలను? మా platform గురించి తెలుసుకోవాలంటే చెప్పండి, లేదా మీకు callback కావాలంటే వివరాలు ఇవ్వండి."
+    },
+    {
+      "seq": 1,
+      "role": "user",
+      "content": "నమస్కారమండి. ఓకోల్ ఏఐ ప్లాట్ఫామ్ గురించి చెప్పండి ఒక డెమో కావాలి"
+    },
+    {
+      "seq": 2,
+      "role": "assistant",
+      "content": "VocollAI అనేది AI voice agents ని తయారు చేయడానికి మరియు మేనేజ్ చేయడానికి ఉపయోగపడే ప్లాట్‌ఫామ్. ఇందులో మీరు agent instructions, knowledge bases, మరియు workflows వంటివి సెట్ చేసుకోవచ్చు. Demo కోసం నేను callback request ని మా inbox లో save చేయగలను, దానికి మీ వివరాలు ఇవ్వాలనుకుంటున్నారా?"
+    },
+    {
+      "seq": 3,
+      "role": "user",
+      "content": "Please speak only in English. What can Vocal AI do?"
+    },
+    {
+      "seq": 4,
+      "role": "assistant",
+      "content": "VocollAI is a platform for building and managing AI voice agents. You can set up agent instructions, knowledge bases, governed tools, and workflows. We also provide version publishing, deployments, conversation history, and browser voice testing. Would you like me to save a callback request for a demo?"
+    }
+  ],
+  "passed": true
+}

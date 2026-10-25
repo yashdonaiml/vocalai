@@ -1,0 +1,22 @@
+# Agent rules
+- Each console area is a route under src/routes/_authenticated/ rendered inside AppShell (src/components/app-shell.tsx); the layout gates on session and workspace — keeps tabs modular and protected.
+- Shared card primitives live in src/components/apple.tsx; pages compose them instead of styling raw divs — keeps the card look consistent.
+- Tenancy is org → workspace → environment; every tenant table carries workspace_id and RLS uses is_workspace_member/is_org_member — isolation enforced in the database.
+- Agents keep an editable draft in agents.config and publish immutable agent_versions; deployments pin a version to an environment via a checksummed runtime_bundles row compiled in src/lib/runtime/bundle.server.ts — live config never mutates.
+- All AI vendor access goes through the provider registry (src/lib/providers/registry.server.ts: workspace BYOK first, then platform env key); no vendor gateway is hard-wired — keeps aviroh vendor-neutral.
+- Knowledge embeddings use each knowledge base's embedding_provider/model (3072-dim) and searchKnowledge groups by model — query vectors always match their index.
+- Realtime media/SIP runs on LiveKit (ADR-RT-001); LiveKit terms are confined to src/lib/runtime/livekit.server.ts and runtime/src/engines.ts — never part of the domain model.
+- The voice worker lives in runtime/ (separate deployable) and talks to the console only via HMAC-signed /api/public/runtime/* routes (src/lib/runtime/session.server.ts) — credentials resolved per session, never stored in bundles.
+- Secrets in the DB (BYOK keys, tool auth headers) are AES-GCM encrypted via src/lib/crypto.server.ts; clients only see hints — raw keys never reach the browser.
+- Color tokens live in src/styles.css; semantic extras realtime/intelligence/success/warning map to meaning — consistent color semantics.
+- System status labels are styled only through SystemLabel/Readout in src/components/apple.tsx — one place to change label styling.
+- The console shell is a shadcn Sidebar with user-intent groups and a workspace context provider; all tenant queries key by the selected workspace to prevent cross-workspace state reuse.
+- The internal operations console lives at /internal with its own shell, gated by platform staff roles (admin/operator via user_roles), never by org membership; staff actions go through internal.functions.ts and write internal_audit_events — keeps staff and customer boundaries separate.
+- The public REST API lives at /api/public/v1/* and authenticates with workspace API keys stored only as SHA-256 hashes (issued via developer.functions.ts); every call is scoped to the key's workspace and logged without payloads — external access never uses user sessions.
+- Full (100%) production deployments are blocked unless every gating eval suite has a passing run on that version; canaries are exempt — eval results arrive from the worker via the signed runtime eval-result route.
+- Agent studio tracks a last-saved snapshot; publish only runs after a fully successful save — prevents publishing unsaved or half-saved drafts.
+- Workflows execute server-side in src/lib/workflows.server.ts (manual runs via workflows.functions.ts, live runs dispatched from runtime call events) and every run is recorded in workflow_runs — one engine for testing and production.
+- Workflow graphs are stored inside workflows.steps and validated before execution, with legacy linear steps converted on read — keeps older workflows working while visual branches execute as drawn.
+- Conversation tags are persisted in conversation_tags by the workflow executor and shown on call details — tag actions must never report success without a saved call.
+- Agent conversation flows are stored in agents.config.flow and compiled to step-by-step text by effectiveInstructions() in src/lib/agent-config.ts, used by both the runtime bundle and text tests — the drawn flow is what the agent actually follows.
+- Every external tool call goes through the Tool Gateway (src/lib/tools/gateway.server.ts) and tool governance tables are written only by server functions, per docs/specs/tool-gateway.md (ENG-TOOLS-001) — one policy and audit path for every tool source.

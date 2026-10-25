@@ -1,0 +1,20 @@
+[
+  {
+    "name": "mixed",
+    "transcript": "నమస్కారమండి ఓకోల్ఏఐ ప్లాట్ఫామ్ గురించి చెప్పండి నాకు ఒక డెమో కావాలి",
+    "languages": [
+      "te"
+    ],
+    "confidence": 0.9951172,
+    "bytes": 234318
+  },
+  {
+    "name": "english",
+    "transcript": "Please speak only in English. What can Vocal AI do?",
+    "languages": [
+      "en"
+    ],
+    "confidence": 1,
+    "bytes": 184398
+  }
+]

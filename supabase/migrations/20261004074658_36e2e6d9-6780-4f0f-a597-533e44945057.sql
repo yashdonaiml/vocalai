@@ -1,0 +1,2 @@
+revoke execute on function public.match_chunks(uuid[], extensions.vector, integer) from anon, authenticated;
+grant execute on function public.match_chunks(uuid[], extensions.vector, integer) to service_role;

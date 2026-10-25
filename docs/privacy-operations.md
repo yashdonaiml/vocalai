@@ -1,0 +1,15 @@
+# Call privacy operations
+
+Apply `20261025110000_privacy_enforcement.sql` with the normal migration release. It immediately masks retained content for organizations with masking enabled and purges content already past retention. Review that irreversible content change before applying to production. No production migration has been run by this implementation.
+
+Configure an external scheduler to POST `/api/public/privacy/retention` hourly with `Authorization: Bearer <CRON_SECRET>`. Use the same secret rotation mechanism as the existing scheduled jobs. Alert on non-2xx responses. The service-only cleanup RPC is idempotent; browser users cannot invoke it. Shortening retention also runs cleanup synchronously when the policy is saved. Retention applies by the original conversation start time, including later-created linked tool and workflow records.
+
+Database RLS hides expired call records immediately, before scheduled deletion, and enforces administrator-only transcript access on conversation summaries, turns, tags, tool details, and workflow details. Workspace API keys cannot establish an administrator identity, so conversation exports return 403 for administrator-only policies. Callback inbox service-role reads also enforce retention and parent conversation scope. Tenant membership and existing tool permission policies still apply.
+
+Cleanup deletes turns, tags, and encrypted pending callback arguments. It clears conversation summaries and caller numbers, tool inputs/outputs, and workflow steps/errors. Conversation and tool accounting metadata, usage, and billing records remain. The runtime stores transcripts through database triggers, so service-role ingestion also masks content before it reaches persisted call fields.
+
+Masking covers email addresses, phone/card-like number sequences, and known contact/card JSON fields. It does not claim to detect names, addresses, medical information, or every identifier. Raw audio and incoming provider requests may still pass through the live process to perform the call; masking is a persistence boundary, not a promise that vendors never process personal data. Retained pending callback arguments remain encrypted while needed to execute an approved callback and are destroyed at expiry. Explicitly disabling masking permits retained raw content; enabling it backfills retained content immediately.
+
+Audio recording is unavailable in the current voice worker. The UI states that limitation and the database rejects enabling recording. There are no implemented audio recordings to purge. Future recording support must implement consent, protected storage access, and deletion under this same retention contract before exposing recording controls.
+
+Local validation: `node --test tests/launch-privacy.test.cjs` exercises the actual migration with PostgreSQL via PGlite, including member/admin RLS, cross-workspace writes, ingestion masking, parent-linked expiry, encrypted callback deletion, retained usage, and idempotent cleanup. No remote database or vendor calls are required.
