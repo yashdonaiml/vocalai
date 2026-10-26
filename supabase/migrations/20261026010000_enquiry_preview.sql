@@ -68,6 +68,10 @@ begin
  select * into p from setup_preview_sessions where setup_id=s.id and request_key=_request;
  if found then
   if p.actor_id<>_actor or p.setup_revision<>s.revision or p.snapshot_hash<>s.snapshot_hash then raise exception 'Test belongs to a different draft or owner'; end if;
+  if p.status='failed' and p.session_id is null then
+   update setup_preview_sessions set status='preparing',expires_at=now()+interval '15 minutes' where id=p.id returning * into p;
+   return jsonb_build_object('claimed',true,'preview',to_jsonb(p));
+  end if;
   return jsonb_build_object('claimed',false,'preview',to_jsonb(p));
  end if;
  if exists(select 1 from setup_preview_sessions where setup_id=s.id and status in ('preparing','ready') and expires_at>now()

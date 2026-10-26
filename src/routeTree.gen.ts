@@ -41,6 +41,7 @@ import { Route as AuthenticatedAgentsIndexRouteImport } from './routes/_authenti
 import { Route as AuthenticatedAgentsIdRouteImport } from './routes/_authenticated/agents.$id'
 import { Route as AuthenticatedAgentsNewRouteImport } from './routes/_authenticated/agents.new'
 import { Route as AuthenticatedAssistantSetupAgentIdRouteImport } from './routes/_authenticated/assistant-setup.$agentId'
+import { Route as AuthenticatedBuilderAgentIdRouteImport } from './routes/_authenticated/builder.$agentId'
 import { Route as AuthenticatedConversationsIndexRouteImport } from './routes/_authenticated/conversations.index'
 import { Route as AuthenticatedConversationsIdRouteImport } from './routes/_authenticated/conversations.$id'
 import { Route as ApiPublicEventsDeliverRouteImport } from './routes/api/public/events/deliver'
@@ -54,6 +55,7 @@ import { Route as ApiPublicRuntimeSessionRouteImport } from './routes/api/public
 import { Route as ApiPublicRuntimeToolRouteImport } from './routes/api/public/runtime/tool'
 import { Route as ApiPublicTelephonyReconcileRouteImport } from './routes/api/public/telephony/reconcile'
 import { Route as ApiPublicV1SplatRouteImport } from './routes/api/public/v1/$'
+import { Route as ApiPublicOauthGoogleCallbackRouteImport } from './routes/api/public/oauth/google/callback'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -219,6 +221,12 @@ const AuthenticatedAssistantSetupAgentIdRoute =
     path: '/assistant-setup/$agentId',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedBuilderAgentIdRoute =
+  AuthenticatedBuilderAgentIdRouteImport.update({
+    id: '/builder/$agentId',
+    path: '/builder/$agentId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedConversationsIndexRoute =
   AuthenticatedConversationsIndexRouteImport.update({
     id: '/conversations/',
@@ -290,6 +298,12 @@ const ApiPublicV1SplatRoute = ApiPublicV1SplatRouteImport.update({
   path: '/api/public/v1/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicOauthGoogleCallbackRoute =
+  ApiPublicOauthGoogleCallbackRouteImport.update({
+    id: '/api/public/oauth/google/callback',
+    path: '/api/public/oauth/google/callback',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -322,6 +336,7 @@ export interface FileRoutesByFullPath {
   '/agents/$id': typeof AuthenticatedAgentsIdRoute
   '/agents/new': typeof AuthenticatedAgentsNewRoute
   '/assistant-setup/$agentId': typeof AuthenticatedAssistantSetupAgentIdRoute
+  '/builder/$agentId': typeof AuthenticatedBuilderAgentIdRoute
   '/conversations/$id': typeof AuthenticatedConversationsIdRoute
   '/agents/': typeof AuthenticatedAgentsIndexRoute
   '/conversations/': typeof AuthenticatedConversationsIndexRoute
@@ -336,6 +351,7 @@ export interface FileRoutesByFullPath {
   '/api/public/runtime/tool': typeof ApiPublicRuntimeToolRoute
   '/api/public/telephony/reconcile': typeof ApiPublicTelephonyReconcileRoute
   '/api/public/v1/$': typeof ApiPublicV1SplatRoute
+  '/api/public/oauth/google/callback': typeof ApiPublicOauthGoogleCallbackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -367,6 +383,7 @@ export interface FileRoutesByTo {
   '/agents/$id': typeof AuthenticatedAgentsIdRoute
   '/agents/new': typeof AuthenticatedAgentsNewRoute
   '/assistant-setup/$agentId': typeof AuthenticatedAssistantSetupAgentIdRoute
+  '/builder/$agentId': typeof AuthenticatedBuilderAgentIdRoute
   '/conversations/$id': typeof AuthenticatedConversationsIdRoute
   '/agents': typeof AuthenticatedAgentsIndexRoute
   '/conversations': typeof AuthenticatedConversationsIndexRoute
@@ -381,6 +398,7 @@ export interface FileRoutesByTo {
   '/api/public/runtime/tool': typeof ApiPublicRuntimeToolRoute
   '/api/public/telephony/reconcile': typeof ApiPublicTelephonyReconcileRoute
   '/api/public/v1/$': typeof ApiPublicV1SplatRoute
+  '/api/public/oauth/google/callback': typeof ApiPublicOauthGoogleCallbackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -415,6 +433,7 @@ export interface FileRoutesById {
   '/_authenticated/agents/$id': typeof AuthenticatedAgentsIdRoute
   '/_authenticated/agents/new': typeof AuthenticatedAgentsNewRoute
   '/_authenticated/assistant-setup/$agentId': typeof AuthenticatedAssistantSetupAgentIdRoute
+  '/_authenticated/builder/$agentId': typeof AuthenticatedBuilderAgentIdRoute
   '/_authenticated/conversations/$id': typeof AuthenticatedConversationsIdRoute
   '/_authenticated/agents/': typeof AuthenticatedAgentsIndexRoute
   '/_authenticated/conversations/': typeof AuthenticatedConversationsIndexRoute
@@ -429,6 +448,7 @@ export interface FileRoutesById {
   '/api/public/runtime/tool': typeof ApiPublicRuntimeToolRoute
   '/api/public/telephony/reconcile': typeof ApiPublicTelephonyReconcileRoute
   '/api/public/v1/$': typeof ApiPublicV1SplatRoute
+  '/api/public/oauth/google/callback': typeof ApiPublicOauthGoogleCallbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -463,6 +483,7 @@ export interface FileRouteTypes {
     | '/agents/$id'
     | '/agents/new'
     | '/assistant-setup/$agentId'
+    | '/builder/$agentId'
     | '/conversations/$id'
     | '/agents/'
     | '/conversations/'
@@ -477,6 +498,7 @@ export interface FileRouteTypes {
     | '/api/public/runtime/tool'
     | '/api/public/telephony/reconcile'
     | '/api/public/v1/$'
+    | '/api/public/oauth/google/callback'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -508,6 +530,7 @@ export interface FileRouteTypes {
     | '/agents/$id'
     | '/agents/new'
     | '/assistant-setup/$agentId'
+    | '/builder/$agentId'
     | '/conversations/$id'
     | '/agents'
     | '/conversations'
@@ -522,6 +545,7 @@ export interface FileRouteTypes {
     | '/api/public/runtime/tool'
     | '/api/public/telephony/reconcile'
     | '/api/public/v1/$'
+    | '/api/public/oauth/google/callback'
   id:
     | '__root__'
     | '/'
@@ -555,6 +579,7 @@ export interface FileRouteTypes {
     | '/_authenticated/agents/$id'
     | '/_authenticated/agents/new'
     | '/_authenticated/assistant-setup/$agentId'
+    | '/_authenticated/builder/$agentId'
     | '/_authenticated/conversations/$id'
     | '/_authenticated/agents/'
     | '/_authenticated/conversations/'
@@ -569,6 +594,7 @@ export interface FileRouteTypes {
     | '/api/public/runtime/tool'
     | '/api/public/telephony/reconcile'
     | '/api/public/v1/$'
+    | '/api/public/oauth/google/callback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -590,6 +616,7 @@ export interface RootRouteChildren {
   ApiPublicRuntimeToolRoute: typeof ApiPublicRuntimeToolRoute
   ApiPublicTelephonyReconcileRoute: typeof ApiPublicTelephonyReconcileRoute
   ApiPublicV1SplatRoute: typeof ApiPublicV1SplatRoute
+  ApiPublicOauthGoogleCallbackRoute: typeof ApiPublicOauthGoogleCallbackRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -818,6 +845,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAssistantSetupAgentIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/builder/$agentId': {
+      id: '/_authenticated/builder/$agentId'
+      path: '/builder/$agentId'
+      fullPath: '/builder/$agentId'
+      preLoaderRoute: typeof AuthenticatedBuilderAgentIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/conversations/': {
       id: '/_authenticated/conversations/'
       path: '/conversations'
@@ -909,6 +943,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicV1SplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/oauth/google/callback': {
+      id: '/api/public/oauth/google/callback'
+      path: '/api/public/oauth/google/callback'
+      fullPath: '/api/public/oauth/google/callback'
+      preLoaderRoute: typeof ApiPublicOauthGoogleCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -932,6 +973,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAgentsIdRoute: typeof AuthenticatedAgentsIdRoute
   AuthenticatedAgentsNewRoute: typeof AuthenticatedAgentsNewRoute
   AuthenticatedAssistantSetupAgentIdRoute: typeof AuthenticatedAssistantSetupAgentIdRoute
+  AuthenticatedBuilderAgentIdRoute: typeof AuthenticatedBuilderAgentIdRoute
   AuthenticatedConversationsIdRoute: typeof AuthenticatedConversationsIdRoute
   AuthenticatedAgentsIndexRoute: typeof AuthenticatedAgentsIndexRoute
   AuthenticatedConversationsIndexRoute: typeof AuthenticatedConversationsIndexRoute
@@ -958,6 +1000,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAgentsNewRoute: AuthenticatedAgentsNewRoute,
   AuthenticatedAssistantSetupAgentIdRoute:
     AuthenticatedAssistantSetupAgentIdRoute,
+  AuthenticatedBuilderAgentIdRoute: AuthenticatedBuilderAgentIdRoute,
   AuthenticatedConversationsIdRoute: AuthenticatedConversationsIdRoute,
   AuthenticatedAgentsIndexRoute: AuthenticatedAgentsIndexRoute,
   AuthenticatedConversationsIndexRoute: AuthenticatedConversationsIndexRoute,
@@ -1005,6 +1048,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicRuntimeToolRoute: ApiPublicRuntimeToolRoute,
   ApiPublicTelephonyReconcileRoute: ApiPublicTelephonyReconcileRoute,
   ApiPublicV1SplatRoute: ApiPublicV1SplatRoute,
+  ApiPublicOauthGoogleCallbackRoute: ApiPublicOauthGoogleCallbackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

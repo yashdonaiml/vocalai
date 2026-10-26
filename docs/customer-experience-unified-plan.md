@@ -2,6 +2,8 @@
 
 Owner decision, October 25, 2026: customer experience takes priority. This is the current implementation plan for the first supported business-owner journey. Earlier audits remain evidence/history; they are not competing roadmaps. Research and planning do not deploy application changes.
 
+**Execution status, October 26, 2026:** CX-01 and the inbox-preview slice of CX-02 are implemented and locally validated. The CX-03 Google Sheets source slice is implemented in the same setup journey with encrypted OAuth, named resource selection, reviewed mappings, Tool Gateway execution and exact receipts. Real OAuth, real spreadsheet writes, remote migrations and hosted voice validation remain staging gates; CX-04–06 are not complete.
+
 ## Product contract
 
 A nontechnical service-business owner can describe the job, choose a supported destination, talk to a working agent, see a real saved enquiry, and activate it on an eligible number without learning models, endpoints, schemas, environments or deployment percentages.

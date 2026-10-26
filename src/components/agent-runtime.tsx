@@ -7,56 +7,144 @@ import { GlassCard, SystemLabel } from "@/components/apple";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MODELS, REALTIME_VOICES, providerLabel, type Capability } from "@/lib/providers/catalog";
-import { DEFAULT_COMPOSABLE, DEFAULT_RUNTIME, type ModelRef, type RuntimeConfig } from "@/lib/agent-config";
+import {
+  DEFAULT_COMPOSABLE,
+  DEFAULT_RUNTIME,
+  type ModelRef,
+  type RuntimeConfig,
+} from "@/lib/agent-config";
 import { startTestSession } from "@/lib/platform.functions";
 
 const sel = "w-full rounded-md border border-input bg-background px-3 py-2 text-sm";
 
 function Label({ children }: { children: React.ReactNode }) {
-  return <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{children}</span>;
+  return (
+    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+      {children}
+    </span>
+  );
 }
 
-function ModelSelect({ cap, value, onChange }: { cap: Capability; value: ModelRef; onChange: (v: ModelRef) => void }) {
+function ModelSelect({
+  cap,
+  value,
+  onChange,
+}: {
+  cap: Capability;
+  value: ModelRef;
+  onChange: (v: ModelRef) => void;
+}) {
   return (
-    <select className={sel} value={`${value.provider}:${value.model}`}
-      onChange={(e) => { const [provider, model] = e.target.value.split(":"); onChange({ ...value, provider: provider as ModelRef["provider"], model: model ?? "" }); }}>
+    <select
+      className={sel}
+      value={`${value.provider}:${value.model}`}
+      onChange={(e) => {
+        const [provider, model] = e.target.value.split(":");
+        onChange({ ...value, provider: provider as ModelRef["provider"], model: model ?? "" });
+      }}
+    >
       {MODELS[cap].map((m) => (
-        <option key={`${m.provider}:${m.id}`} value={`${m.provider}:${m.id}`}>{providerLabel(m.provider)} · {m.label}</option>
+        <option key={`${m.provider}:${m.id}`} value={`${m.provider}:${m.id}`}>
+          {providerLabel(m.provider)} · {m.label}
+        </option>
       ))}
     </select>
   );
 }
 
-export function RuntimeEditor({ value, onChange }: { value: RuntimeConfig; onChange: (v: RuntimeConfig) => void }) {
+export function RuntimeEditor({
+  value,
+  onChange,
+}: {
+  value: RuntimeConfig;
+  onChange: (v: RuntimeConfig) => void;
+}) {
   return (
     <div className="space-y-4">
       <label className="block">
         <Label>Execution mode</Label>
-        <select className={`${sel} mt-1.5`} value={value.mode}
-          onChange={(e) => onChange(e.target.value === "native" ? DEFAULT_RUNTIME : DEFAULT_COMPOSABLE)}>
+        <select
+          className={`${sel} mt-1.5`}
+          value={value.mode}
+          onChange={(e) =>
+            onChange(e.target.value === "native" ? DEFAULT_RUNTIME : DEFAULT_COMPOSABLE)
+          }
+        >
           <option value="native">Native realtime (speech-to-speech)</option>
           <option value="composable">Composable: STT → LLM → TTS</option>
         </select>
       </label>
       {value.mode === "native" ? (
         <>
-          <label className="block"><Label>Realtime model</Label><div className="mt-1.5">
-            <ModelSelect cap="realtime" value={value.realtime}
-              onChange={(realtime) => onChange({ ...value, realtime, voice: REALTIME_VOICES[realtime.provider]?.[0] ?? "" })} />
-          </div></label>
-          <label className="block"><Label>Voice</Label>
-            <select className={`${sel} mt-1.5`} value={value.voice} onChange={(e) => onChange({ ...value, voice: e.target.value })}>
-              {(REALTIME_VOICES[value.realtime.provider] ?? []).map((v) => <option key={v}>{v}</option>)}
+          <label className="block">
+            <Label>Realtime model</Label>
+            <div className="mt-1.5">
+              <ModelSelect
+                cap="realtime"
+                value={value.realtime}
+                onChange={(realtime) =>
+                  onChange({
+                    ...value,
+                    realtime,
+                    voice: REALTIME_VOICES[realtime.provider]?.[0] ?? "",
+                  })
+                }
+              />
+            </div>
+          </label>
+          <label className="block">
+            <Label>Voice</Label>
+            <select
+              className={`${sel} mt-1.5`}
+              value={value.voice}
+              onChange={(e) => onChange({ ...value, voice: e.target.value })}
+            >
+              {(REALTIME_VOICES[value.realtime.provider] ?? []).map((v) => (
+                <option key={v}>{v}</option>
+              ))}
             </select>
           </label>
         </>
       ) : (
         <>
-          <label className="block"><Label>Speech-to-text</Label><div className="mt-1.5"><ModelSelect cap="stt" value={value.stt} onChange={(stt) => onChange({ ...value, stt })} /></div></label>
-          <label className="block"><Label>Language model</Label><div className="mt-1.5"><ModelSelect cap="llm" value={value.llm} onChange={(llm) => onChange({ ...value, llm })} /></div></label>
-          <label className="block"><Label>Text-to-speech</Label><div className="mt-1.5"><ModelSelect cap="tts" value={value.tts} onChange={(t) => onChange({ ...value, tts: { ...t, voice: value.tts.voice } })} /></div></label>
-          <label className="block"><Label>Voice ID</Label>
-            <Input className="mt-1.5 font-mono" placeholder="Provider voice ID" value={value.tts.voice} onChange={(e) => onChange({ ...value, tts: { ...value.tts, voice: e.target.value } })} />
+          <label className="block">
+            <Label>Speech-to-text</Label>
+            <div className="mt-1.5">
+              <ModelSelect
+                cap="stt"
+                value={value.stt}
+                onChange={(stt) => onChange({ ...value, stt })}
+              />
+            </div>
+          </label>
+          <label className="block">
+            <Label>Language model</Label>
+            <div className="mt-1.5">
+              <ModelSelect
+                cap="llm"
+                value={value.llm}
+                onChange={(llm) => onChange({ ...value, llm })}
+              />
+            </div>
+          </label>
+          <label className="block">
+            <Label>Text-to-speech</Label>
+            <div className="mt-1.5">
+              <ModelSelect
+                cap="tts"
+                value={value.tts}
+                onChange={(t) => onChange({ ...value, tts: { ...t, voice: value.tts.voice } })}
+              />
+            </div>
+          </label>
+          <label className="block">
+            <Label>Voice ID</Label>
+            <Input
+              className="mt-1.5 font-mono"
+              placeholder="Provider voice ID"
+              value={value.tts.voice}
+              onChange={(e) => onChange({ ...value, tts: { ...value.tts, voice: e.target.value } })}
+            />
           </label>
         </>
       )}
@@ -140,7 +228,8 @@ export function TestCall({
       room = new Room({ adaptiveStream: true, dynacast: true });
       roomRef.current = room;
       room.on(RoomEvent.TrackSubscribed, (track) => {
-        if (mountedRef.current && track.kind === Track.Kind.Audio) audioBox.current?.appendChild(track.attach());
+        if (mountedRef.current && track.kind === Track.Kind.Audio)
+          audioBox.current?.appendChild(track.attach());
       });
       room.on(RoomEvent.TranscriptionReceived, (segments, participant) => {
         if (!mountedRef.current) return;
@@ -157,17 +246,27 @@ export function TestCall({
       });
       room.on(RoomEvent.Disconnected, disconnectedOnce);
       await room.connect(join.serverUrl, join.token);
-      if (!mountedRef.current || disconnected) { await room.disconnect(); return; }
+      if (!mountedRef.current || disconnected) {
+        await room.disconnect();
+        return;
+      }
       await room.localParticipant.setMicrophoneEnabled(true);
-      if (!mountedRef.current || disconnected) { await room.disconnect(); return; }
+      if (!mountedRef.current || disconnected) {
+        await room.disconnect();
+        return;
+      }
       changeStatus("live");
     } catch (e) {
       if (room) await room.disconnect().catch(() => undefined);
       disconnectedOnce();
       if (mountedRef.current) {
-        const message = e instanceof Error && /NotAllowedError|permission|microphone/i.test(`${e.name} ${e.message}`)
-          ? "Microphone access was denied. Allow microphone access in your browser, then try again."
-          : e instanceof Error ? e.message : "Could not start the call";
+        const message =
+          e instanceof Error &&
+          /NotAllowedError|permission|microphone/i.test(`${e.name} ${e.message}`)
+            ? "Microphone access was denied. Allow microphone access in your browser, then try again."
+            : e instanceof Error
+              ? e.message
+              : "Could not start the call";
         toast.error(message);
         callbacksRef.current.onError?.(message);
       }
@@ -178,39 +277,65 @@ export function TestCall({
 
   async function end() {
     changeStatus("ending");
-    try { await roomRef.current?.disconnect(); }
-    finally {
+    try {
+      await roomRef.current?.disconnect();
+    } finally {
       if (!roomRef.current) changeStatus("idle");
     }
   }
 
   const active = status !== "idle";
   return (
-    <GlassCard >
+    <GlassCard>
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-realtime">{startSession ? "Inbox-only voice preview" : "Test call"}</h2>
-        <SystemLabel tone={status === "live" ? "live" : status === "connecting" ? "warn" : "muted"} dot={status === "live"}>
+        <h2 className="font-semibold text-realtime">
+          {startSession ? "Inbox-only voice preview" : "Test call"}
+        </h2>
+        <SystemLabel
+          tone={status === "live" ? "live" : status === "connecting" ? "warn" : "muted"}
+          dot={status === "live"}
+        >
           {status === "live" ? "Live" : status}
         </SystemLabel>
       </div>
-      <p className="mt-1 text-xs text-muted-foreground">{startSession ? "Use test contact details. A caller-confirmed enquiry is saved only in the callback inbox; nobody is notified." : "Try your saved draft in a test call. Save first after changes."}</p>
+      <p className="mt-1 text-xs text-muted-foreground">
+        {startSession
+          ? "Use test contact details. A caller-confirmed enquiry is saved only in the callback inbox; nobody is notified."
+          : "Try your saved draft in a test call. Save first after changes."}
+      </p>
       <p className="mt-4 font-pixel text-realtime/70">RT · Session</p>
       <div className="my-3 flex h-12 items-end justify-center gap-1">
         {Array.from({ length: 24 }).map((_, i) => (
-          <span key={i} className={`w-1.5 rounded-full bg-realtime ${status === "live" ? "animate-pulse" : "opacity-30"}`}
-            style={{ height: `${20 + ((i * 37) % 80)}%`, animationDelay: `${i * 60}ms` }} />
+          <span
+            key={i}
+            className={`w-1.5 rounded-full bg-realtime ${status === "live" ? "animate-pulse" : "opacity-30"}`}
+            style={{ height: `${20 + ((i * 37) % 80)}%`, animationDelay: `${i * 60}ms` }}
+          />
         ))}
       </div>
       {active ? (
-        <Button variant="destructive" className="w-full rounded-full" onClick={end} disabled={status === "ending" || status === "connecting"}><PhoneOff className="h-4 w-4" /> End call</Button>
+        <Button
+          variant="destructive"
+          className="w-full rounded-full"
+          onClick={end}
+          disabled={status === "ending" || status === "connecting"}
+        >
+          <PhoneOff className="h-4 w-4" /> End call
+        </Button>
       ) : (
-        <Button className="w-full rounded-full" onClick={begin} disabled={disabled}><Mic className="h-4 w-4" /> {startSession ? "Authorize and start voice preview" : "Start test call"}</Button>
+        <Button className="w-full rounded-full" onClick={begin} disabled={disabled}>
+          <Mic className="h-4 w-4" />{" "}
+          {startSession ? "Authorize and start voice preview" : "Start test call"}
+        </Button>
       )}
       <div ref={audioBox} hidden />
       {captions.length > 0 && (
         <div className="mt-4 max-h-64 space-y-2 overflow-y-auto text-sm">
           {captions.map((c) => (
-            <p key={c.id}><span className={c.role === "You" ? "text-primary" : "text-realtime"}>{c.role}:</span> {c.text}</p>
+            <p key={c.id}>
+              <span className={c.role === "You" ? "text-primary" : "text-realtime"}>{c.role}:</span>{" "}
+              {c.text}
+            </p>
           ))}
         </div>
       )}

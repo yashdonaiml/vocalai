@@ -46,5 +46,8 @@ These migrations were created after the baseline initializer. Apply each exactly
 3. `../migrations/20261025170000_environment_kind_constraint.sql` — canonical environment kinds.
 4. `../migrations/20261025180000_managed_inbound_privacy_and_test_challenge.sql` — managed-number privacy grants and expiring phone verification challenges.
 5. `../migrations/20261025190000_successful_action_webhook_events.sql` — successful-action webhook event linkage and delivery leases.
+6. `../migrations/20261026010000_enquiry_preview.sql` — resumable enquiry setup and server-owned inbox-preview authorization. Required before using the new assistant setup route.
+7. `../migrations/20261026020000_google_sheets_oauth.sql` — service-only Google authorization state and encrypted workspace connection credentials. Required before connecting Google Sheets.
+8. `../migrations/20261026030000_enquiry_google_destination.sql` — pins the reviewed Google worksheet and mapping to the resumable enquiry setup; destination changes invalidate older preview authority.
 
 The privacy migration performs irreversible masking/expiry operations; inspect and back up the target before applying. These scripts are not bundled into `01-initialize-vocollai.sql`, and they have not been applied to any remote database by this repository workflow. For an existing production or SQL-Editor-initialized project, first verify the schema and reconcile CLI migration history; do not blindly use `db push` or rerun the fresh-schema initializer.

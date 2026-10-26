@@ -36,6 +36,183 @@ async function admin() {
   return (await import("@/integrations/supabase/client.server")).supabaseAdmin;
 }
 
+// Called only by the authenticated setup service after explicit test authorization.
+export async function prepareEnquiryPreviewAction(
+  workspaceId: string,
+  agentId: string,
+  actor: string,
+  destination: import("./setup.types").EnquiryDestination = { kind: "callback_inbox" },
+) {
+  const db = await admin();
+  const { data: allowed, error: permissionError } = await db.rpc(
+    "release_actor_is_admin" as never,
+    { _workspace: workspaceId, _actor: actor } as never,
+  );
+  if (permissionError || !allowed) throw new Error("Workspace admin required");
+  const { data: agent } = await db
+    .from("agents")
+    .select("id")
+    .eq("id", agentId)
+    .eq("workspace_id", workspaceId)
+    .single();
+  const { data: workspace } = await db
+    .from("workspaces")
+    .select("org_id")
+    .eq("id", workspaceId)
+    .single();
+  if (!agent || !workspace) throw new Error("Assistant not found");
+  const operation = destination.kind === "google_sheets" ? "append_google_sheet" : "save_callback";
+  const displayName = `${destination.kind === "google_sheets" ? "Google Sheets" : "Inbox"} enquiry ${agentId}`;
+  let { data: connector } = await db
+    .from("tool_connectors")
+    .select("id")
+    .eq("workspace_id", workspaceId)
+    .eq("display_name", displayName)
+    .is("archived_at", null)
+    .maybeSingle();
+  if (!connector) {
+    const result = await db
+      .from("tool_connectors")
+      .insert({
+        workspace_id: workspaceId,
+        org_id: workspace.org_id,
+        type: "native",
+        display_name: displayName,
+        canonical_origin:
+          destination.kind === "google_sheets"
+            ? "https://sheets.googleapis.com"
+            : "https://vocollai.internal",
+        configuration: { operation, enquiry_preview: true },
+        health: "healthy",
+        created_by: actor,
+      })
+      .select("id")
+      .single();
+    if (result.error || !result.data)
+      throw new Error("Could not prepare inbox connection. Retry preparation.");
+    connector = result.data;
+  } else {
+    const { error } = await db
+      .from("tool_connectors")
+      .update({
+        canonical_origin:
+          destination.kind === "google_sheets"
+            ? "https://sheets.googleapis.com"
+            : "https://vocollai.internal",
+        configuration: { operation, enquiry_preview: true },
+        health: "healthy",
+      })
+      .eq("id", connector.id)
+      .eq("workspace_id", workspaceId);
+    if (error) throw new Error("Could not update the enquiry destination.");
+  }
+  const { ENQUIRY_CALLBACK_SCHEMA } = await import("./enquiry-pack");
+  const { upsertOperation } = await import("./tools/catalog.server");
+  const tool = await upsertOperation(workspaceId, connector.id, {
+    opId: operation,
+    slug: operation,
+    displayName:
+      destination.kind === "google_sheets"
+        ? "Save enquiry to Google Sheets"
+        : "Save callback request",
+    description:
+      destination.kind === "google_sheets"
+        ? `Save a caller-confirmed enquiry to ${destination.spreadsheetName}, ${destination.worksheetTitle}. Test previews create a visibly marked test row.`
+        : "Save a caller-confirmed enquiry to the callback inbox. No notification or callback is promised. Preferred time is optional.",
+    inputSchema: ENQUIRY_CALLBACK_SCHEMA,
+    mapping:
+      destination.kind === "google_sheets"
+        ? {
+            operation,
+            destination: {
+              spreadsheetId: destination.spreadsheetId,
+              spreadsheetName: destination.spreadsheetName,
+              worksheetId: destination.worksheetId,
+              worksheetTitle: destination.worksheetTitle,
+              mapping: destination.mapping,
+            },
+          }
+        : { operation },
+    risk: "write",
+  });
+  const { data: definition } = await db
+    .from("tool_definitions")
+    .select("current_revision_id")
+    .eq("id", tool.toolId)
+    .eq("workspace_id", workspaceId)
+    .single();
+  if (!definition?.current_revision_id) throw new Error("Could not prepare the enquiry action");
+  const revisionId = definition.current_revision_id;
+  const { data: previewConnectors } = await db
+    .from("tool_connectors")
+    .select("id")
+    .eq("workspace_id", workspaceId)
+    .in("display_name", [
+      `Enquiry preview ${agentId}`,
+      `Inbox enquiry ${agentId}`,
+      `Google Sheets enquiry ${agentId}`,
+    ]);
+  if (previewConnectors?.length) {
+    const { data: previewTools } = await db
+      .from("tool_definitions")
+      .select("id")
+      .eq("workspace_id", workspaceId)
+      .in(
+        "connector_id",
+        previewConnectors.map((item) => item.id),
+      );
+    if (previewTools?.length)
+      await db
+        .from("agent_tool_bindings")
+        .update({ enabled: false })
+        .eq("workspace_id", workspaceId)
+        .eq("agent_id", agentId)
+        .in(
+          "tool_id",
+          previewTools.map((item) => item.id),
+        );
+  }
+  const { data: previous, error: previousError } = await db
+    .from("tool_approvals")
+    .select("status,allowed_contexts,policy_revision")
+    .eq("tool_revision_id", revisionId)
+    .eq("workspace_id", workspaceId)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (previousError) throw new Error("Could not read test authorization");
+  if (previous?.status !== "approved" || previous.allowed_contexts?.join() !== "setup_preview") {
+    const { error } = await db.from("tool_approvals").insert({
+      workspace_id: workspaceId,
+      tool_revision_id: revisionId,
+      risk_class: "write",
+      confirmation_minimum: "voice_readback",
+      allowed_contexts: ["setup_preview"],
+      safe_to_retry: false,
+      status: "approved",
+      approval_source: "human",
+      approved_by: actor,
+      approved_at: new Date().toISOString(),
+      policy_revision: (previous?.policy_revision ?? 0) + 1,
+    });
+    if (error) throw new Error("Could not authorize destination testing");
+  }
+  const { error: bindError } = await db.from("agent_tool_bindings").upsert(
+    {
+      workspace_id: workspaceId,
+      agent_id: agentId,
+      tool_id: tool.toolId,
+      tool_revision_id: revisionId,
+      confirmation_mode: "always",
+      enabled: true,
+      requirement: "required",
+    },
+    { onConflict: "agent_id,tool_id" },
+  );
+  if (bindError) throw new Error("Could not bind the preview action");
+  return { toolId: tool.toolId, revisionId };
+}
+
 async function requireIntegrationTest(workspaceId: string, toolId: string, revisionId: string) {
   const db = await admin();
   const { data, error } = await db
@@ -110,21 +287,19 @@ export const approveIntegration = createServerFn({ method: "POST" })
       !previous.allowed_contexts?.includes("console_test")
     )
       throw new Error("Review and authorize testing for this action first");
-    const { error: saveError } = await db
-      .from("tool_approvals")
-      .insert({
-        workspace_id: def.workspace_id,
-        tool_revision_id: def.current_revision_id!,
-        status: "approved",
-        risk_class: task.risk,
-        confirmation_minimum: task.risk === "read" ? "none" : "voice_readback",
-        allowed_contexts: ["console_test", "voice_session"],
-        safe_to_retry: false,
-        approval_source: "human",
-        approved_by: context.userId,
-        approved_at: new Date().toISOString(),
-        policy_revision: previous.policy_revision + 1,
-      });
+    const { error: saveError } = await db.from("tool_approvals").insert({
+      workspace_id: def.workspace_id,
+      tool_revision_id: def.current_revision_id!,
+      status: "approved",
+      risk_class: task.risk,
+      confirmation_minimum: task.risk === "read" ? "none" : "voice_readback",
+      allowed_contexts: ["console_test", "voice_session"],
+      safe_to_retry: false,
+      approval_source: "human",
+      approved_by: context.userId,
+      approved_at: new Date().toISOString(),
+      policy_revision: previous.policy_revision + 1,
+    });
     if (saveError) throw new Error("Could not approve the action");
     return { ok: true };
   });
@@ -621,17 +796,15 @@ export const saveMockReply = createServerFn({ method: "POST" })
     } catch {
       throw new Error("The sample reply must be valid JSON");
     }
-    const { error } = await db
-      .from("tool_mocks")
-      .upsert(
-        {
-          workspace_id: rev.workspace_id,
-          tool_revision_id: rev.id,
-          name: "default",
-          reply: reply as never,
-        },
-        { onConflict: "tool_revision_id,name" },
-      );
+    const { error } = await db.from("tool_mocks").upsert(
+      {
+        workspace_id: rev.workspace_id,
+        tool_revision_id: rev.id,
+        name: "default",
+        reply: reply as never,
+      },
+      { onConflict: "tool_revision_id,name" },
+    );
     if (error) throw new Error("Could not save the sample reply");
     return { ok: true };
   });
@@ -703,11 +876,20 @@ export const decideAction = createServerFn({ method: "POST" })
     if (!pa) throw new Error("This confirmation has expired.");
     const { data: inv } = await db
       .from("tool_invocations")
-      .select("actor_user_id")
+      .select("actor_user_id,mode,context_kind")
       .eq("id", pa.invocation_id)
       .single();
     if (inv?.actor_user_id !== context.userId)
       throw new Error("Only the person who started this test can confirm it.");
+    await can(
+      context as Ctx,
+      inv.mode === "live"
+        ? "tool.test.live"
+        : inv.mode === "sandbox"
+          ? "tool.test.sandbox"
+          : "tool.test.mock",
+      data.workspaceId,
+    );
     const { executePendingAction } = await import("./tools/gateway.server");
     const r = await executePendingAction(
       data.workspaceId,
@@ -912,17 +1094,15 @@ export const publishAgentVersion = createServerFn({ method: "POST" })
       tool_bindings: bindings,
     };
     const version = (last?.version ?? 0) + 1;
-    const { error } = await db
-      .from("agent_versions")
-      .insert({
-        agent_id: agent.id,
-        workspace_id: agent.workspace_id,
-        version,
-        config: snapshot as never,
-        checksum: await checksum(snapshot),
-        release_note: data.releaseNote,
-        published_by: context.userId,
-      });
+    const { error } = await db.from("agent_versions").insert({
+      agent_id: agent.id,
+      workspace_id: agent.workspace_id,
+      version,
+      config: snapshot as never,
+      checksum: await checksum(snapshot),
+      release_note: data.releaseNote,
+      published_by: context.userId,
+    });
     if (error) throw new Error("Could not publish the saved agent draft");
     return { version };
   });

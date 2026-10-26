@@ -27,6 +27,8 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useWorkspaceContext } from "@/lib/workspace";
+import { developerStudioAccess } from "@/lib/developer-access.functions";
+import { useServerFn } from "@tanstack/react-start";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -75,6 +77,7 @@ type Tab = {
     | "/developer";
   label: string;
   icon: ComponentType<{ className?: string }>;
+  developerOnly?: boolean;
 };
 const groups: { label: string; tabs: Tab[] }[] = [
   { label: "", tabs: [{ to: "/overview", label: "Overview", icon: LayoutDashboard }] },
@@ -84,7 +87,7 @@ const groups: { label: string; tabs: Tab[] }[] = [
       { to: "/agents", label: "Agents", icon: Bot },
       { to: "/knowledge", label: "Knowledge", icon: BookOpen },
       { to: "/tools", label: "Integrations", icon: Wrench },
-      { to: "/workflows", label: "Workflows", icon: GitBranch },
+      { to: "/workflows", label: "Workflows", icon: GitBranch, developerOnly: true },
       { to: "/evals", label: "Evals", icon: FlaskConical },
     ],
   },
@@ -140,6 +143,12 @@ function AppSidebar({ onSignOut }: { onSignOut: () => void }) {
   const collapsed = state === "collapsed";
   const path = useRouterState({ select: (r) => r.location.pathname });
   const { data: minutes = 0 } = useQuery(usageQuery(ws.id));
+  const checkDeveloperAccess = useServerFn(developerStudioAccess);
+  const { data: developerAccess } = useQuery({
+    queryKey: ["developer-studio-access", ws.id],
+    queryFn: () => checkDeveloperAccess({ data: { workspaceId: ws.id } }),
+    retry: false,
+  });
   const initials = (ws.org_name || ws.name).slice(0, 2).toUpperCase();
 
   return (
@@ -184,23 +193,25 @@ function AppSidebar({ onSignOut }: { onSignOut: () => void }) {
             )}
             <SidebarGroupContent>
               <SidebarMenu>
-                {g.tabs.map((t) => {
-                  const active = path === t.to || path.startsWith(`${t.to}/`);
-                  return (
-                    <SidebarMenuButton
-                      key={t.to}
-                      asChild
-                      isActive={active}
-                      tooltip={t.label}
-                      className="h-8 text-[13px] text-muted-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-foreground data-[active=true]:[&>svg]:text-primary"
-                    >
-                      <Link to={t.to}>
-                        <t.icon className="h-4 w-4" />
-                        <span>{t.label}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  );
-                })}
+                {g.tabs
+                  .filter((t) => !t.developerOnly || developerAccess?.allowed)
+                  .map((t) => {
+                    const active = path === t.to || path.startsWith(`${t.to}/`);
+                    return (
+                      <SidebarMenuButton
+                        key={t.to}
+                        asChild
+                        isActive={active}
+                        tooltip={t.label}
+                        className="h-8 text-[13px] text-muted-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-foreground data-[active=true]:[&>svg]:text-primary"
+                      >
+                        <Link to={t.to}>
+                          <t.icon className="h-4 w-4" />
+                          <span>{t.label}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    );
+                  })}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
